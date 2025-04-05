@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClothingStore</title>
+    <link rel="stylesheet" href="ouad/bootstrap-4.6.2-dist/bootstrap-4.6.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="all.min.css">
+    <style>
+        #a1{
+            color: white;
+        }
+        #oo{
+            list-style: none;
+        }
+        .product-card {
+            margin-bottom: 20px;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .category-nav {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .main-nav {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .container-fluid {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل الرئيسي -->
+    <nav class="navbar navbar-expand-lg navbar-warning bg-warning main-nav">
+        <div class="container-fluid">
+            <a href="" class="navbar-brand text-light">ClothingStore</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav">
+                <i class="fas fa-bars text-light"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="FristInterface.html" class="nav-link" id="a1">HOME</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" id="a1">FAQ</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" id="a1">MARK</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" id="a1">ABOUT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- شريط تصنيفات المنتجات -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light category-nav">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCategories">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCategories">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="FristInterface.html">ALL</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pageMen.html">MEN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pageKids.html">KIDS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pageWomen.html">WOMEN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pageShoes.html">SHOES</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- قسم المنتجات -->
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <!-- بطاقة المنتج 1 -->
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card product-card h-100">
+                    <img src="imgMen/Men0.jpg" class="card-img-top img-fluid" alt="Men's clothing">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Men's clothing</h5>
+                        <p class="card-text">This stylish clothing is for men. Here you will find all shapes and colors of clothing.</p>
+                        <a href="pageMen1.html" class="btn btn-warning mt-auto"><i class="fa-solid fa-cart-shopping mr-2"></i>Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- بطاقة المنتج 2 -->
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card product-card h-100">
+                    <img src="imgMen/Men1.jpg" class="card-img-top img-fluid" alt="Men's clothing">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Men's clothing</h5>
+                        <p class="card-text">This stylish clothing is for men. Here you will find all shapes and colors of clothing.</p>
+                        <a href="#" class="btn btn-warning mt-auto"><i class="fa-solid fa-cart-shopping mr-2"></i>Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- بطاقة المنتج 3 -->
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card product-card h-100">
+                    <img src="imgWomen/Women2.webp" class="card-img-top img-fluid" alt="Women's clothing">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Women's clothing</h5>
+                        <p class="card-text">Elegant and fashionable clothing for women. Discover the latest trends and styles.</p>
+                        <a href="pageMen1.html" class="btn btn-warning mt-auto"><i class="fa-solid fa-cart-shopping mr-2"></i>Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- بطاقة المنتج 4 -->
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card product-card h-100">
+                    <img src="imgKids/Kids11.jpg" class="card-img-top img-fluid" alt="Kids clothing">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Kids clothing</h5>
+                        <p class="card-text">Adorable and comfortable clothing for kids. Perfect for your little ones.</p>
+                        <a href="#" class="btn btn-warning mt-auto"><i class="fa-solid fa-cart-shopping mr-2"></i>Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- بطاقة المنتج 5 -->
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card product-card h-100">
+                    <img src="imgMen/Men4.jpg" class="card-img-top img-fluid" alt="Men's clothing">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Men's clothing</h5>
+                        <p class="card-text">This stylish clothing is for men. Here you will find all shapes and colors of clothing.</p>
+                        <a href="pageMen1.html" class="btn btn-warning mt-auto"><i class="fa-solid fa-cart-shopping mr-2"></i>Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- بطاقة المنتج 6 -->
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card product-card h-100">
+                    <img src="imgKids/Kids9.jpg" class="card-img-top img-fluid" alt="Kids clothing">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Kids clothing</h5>
+                        <p class="card-text">Adorable and comfortable clothing for kids. Perfect for your little ones.</p>
+                        <a href="#" class="btn btn-warning mt-auto"><i class="fa-solid fa-cart-shopping mr-2"></i>Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- بطاقة المنتج 7 -->
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card product-card h-100">
+                    <img src="imgMen/Men15.jpg" class="card-img-top img-fluid" alt="Men's clothing">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Men's clothing</h5>
+                        <p class="card-text">This stylish clothing is for men. Here you will find all shapes and colors of clothing.</p>
+                        <a href="pageMen1.html" class="btn btn-warning mt-auto"><i class="fa-solid fa-cart-shopping mr-2"></i>Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- بطاقة المنتج 8 -->
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card product-card h-100">
+                    <img src="imgWomen/Women18.webp" class="card-img-top img-fluid" alt="Women's clothing">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Women's clothing</h5>
+                        <p class="card-text">Elegant and fashionable clothing for women. Discover the latest trends and styles.</p>
+                        <a href="#" class="btn btn-warning mt-auto"><i class="fa-solid fa-cart-shopping mr-2"></i>Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- يمكنك إضافة باقي البطاقات بنفس النمط -->
+            <!-- مع التأكد من تصحيح العناوين والوصوف حسب نوع المنتج -->
+            
+        </div>
+    </div>
+
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/popper-min.js"></script>
+    <script src="ouad/bootstrap-4.6.2-dist/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
+</body>
+</html>

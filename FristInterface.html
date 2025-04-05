@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClothingStore</title>
+    <link rel="stylesheet" href="ouad/bootstrap-4.6.2-dist/bootstrap-4.6.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* لون خلفية فاتح */
+            font-family: 'Arial', sans-serif;
+        }
+        .welcome-section {
+            background: linear-gradient(135deg, orange, white); /* تدرج لوني جذاب */
+            padding: 50px 0;
+            color: white;
+            text-align: center;
+        }
+        #a1{
+            color: white;
+        }
+        #inp1{
+            transform: translate(100px);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-warning bg-warning">
+        <a href="" class="navbar-brand text-light">ClothingStore</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#oo">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="oo">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a href="#div1" class="nav-link" id="a1">HOME</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" id="a1">FAQ</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" id="a1">MARK</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" id="a1">ABOUT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <form class="welcome-section" id="div1">
+        <h1>WELCOME TO OUADIE CLOTHING STORE</h1>
+        <p class="lead">We offer trendy clothes for Men, Women, Boys, and Girls.</p>
+        <a href="#ooo" class="btn btn-warning dropdown-toggle text-light" data-toggle="collapse">
+            Login
+        </a>
+        <div class="container w-50 mt-5 collapse" id="ooo">
+            <form action="">
+                <div class="form-group">
+                    <label>Username :</label>
+                    <input type="text" class=" form-control" placeholder="Enter un Email" required>
+                    <Small class="form-text text-muted">Enter your name please!!</Small>
+                </div>
+                <div class="form-group">
+                    <label>Email : </label>
+                    <input type="email" class="form-control" placeholder="Enter un Password" required>
+                    <Small class="form-text text-muted">Enter your name please!!</Small>
+                </div>
+                <div class="form-group">
+                    <label>Password : </label>
+                    <input type="password" class="form-control" placeholder="Enter un Password" requ>
+                    <Small class="form-text text-muted">Enter your name please!!</Small>
+                </div>
+                <div class="row">
+                    <input type="reset" class="btn btn-warning text-light" value="Delete">
+                    <button type="submit" class="btn btn-warning " id="inp1"><a href="pageAll.html" class="text-light">Shop now</a></button>
+                   
+                </div>
+            </form>
+        </div>
+    </form>
+
+    <div class="jumbotron bg-light mt-5 mb-0">
+        <div class="container">
+            <h1 class="display-4">Ouadie Clothing Store</h1>
+            <p class="lead">Shop the latest fashion trends at competitive prices!</p>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-dark">Home</a></li>
+                        <li><a href="#" class="text-dark">Products</a></li>
+                        <li><a href="#" class="text-dark">Special Offers</a></li>
+                        <li><a href="#" class="text-dark">My Account</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Customer Service</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-dark">Return Policy</a></li>
+                        <li><a href="#" class="text-dark">Size Guide</a></li>
+                        <li><a href="#" class="text-dark">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <a href="#" class="text-dark mr-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-dark mr-2"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-dark mr-2"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <p class="lead mt-4">
+                <a href="#" class="btn btn-warning btn-lg" role="button">Shop Now</a>
+            </p>
+            <p class="text-muted small mt-3">© 2025 Ouadie Clothing Store. All rights reserved.</p>
+        </div>
+    </div>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/popper-min.js"></script>
+    <script src="ouad/bootstrap-4.6.2-dist/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
+</body>
+</html>
