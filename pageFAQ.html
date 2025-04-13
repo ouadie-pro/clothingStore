@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="ouad/bootstrap-4.6.2-dist/bootstrap-4.6.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="all.min.css">
+    <style>
+        #a1{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-warning bg-warning main-nav">
+        <div class="container-fluid">
+            <a href="" class="navbar-brand text-light">ClothingStore</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#oo">
+                <i class="fas fa-bars text-light"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="oo">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="FristInterface.html" class="nav-link" id="a1">HOME</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" id="a1">FAQ</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" id="a1">MARK</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" id="a1">ABOUT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light category-nav">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCategories">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCategories">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="FristInterface.html">ALL</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pageMen.html">MEN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pageKids.html">KIDS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pageWomen.html">WOMEN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pageShoes.html">SHOES</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Frequently Asked Questions</h1>
+        
+        <div class="accordion" id="faqAccordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne">
+                            What payment methods do you accept?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#faqAccordion">
+                    <div class="card-body">
+                        We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo">
+                            How long does delivery take?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#faqAccordion">
+                    <div class="card-body">
+                        Standard delivery takes 3-5 business days. Express delivery is available for an additional fee with delivery in 1-2 business days.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree">
+                            What is your return policy?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#faqAccordion">
+                    <div class="card-body">
+                        You may return unworn, unwashed items with original tags within 30 days of purchase for a full refund or exchange. Sale items are final sale unless defective.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour">
+                            How do I track my order?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#faqAccordion">
+                    <div class="card-body">
+                        Once your order ships, you'll receive a tracking number via email. You can track your package using this number on our website or the carrier's website.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header" id="headingFive">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive">
+                            Do you offer international shipping?
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#faqAccordion">
+                    <div class="card-body">
+                        Currently, we only ship within [your country]. We plan to expand internationally in the near future.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <p>Can't find the answer you're looking for? <a href="contact.html">Contact us</a> and we'll be happy to help!</p>
+        </div>
+    </div>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/popper-min.js"></script>
+    <script src="ouad/bootstrap-4.6.2-dist/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
+</body>
+</html>
