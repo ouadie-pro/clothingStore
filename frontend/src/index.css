@@ -1,1 +1,24 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #195de6;
+  --color-background-light: #f6f6f8;
+  --color-background-dark: #111621;
+  --font-family-display: 'Manrope', sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: 'Manrope', sans-serif;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
