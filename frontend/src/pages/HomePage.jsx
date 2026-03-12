@@ -10,7 +10,36 @@ const HomePage = () => {
   const [trendingProducts, setTrendingProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const { addItem } = useCart();
+
+  const itemsPerSlide = 4;
+
+  const getVisibleProducts = () => {
+    const products = trendingProducts.length > 0 ? trendingProducts : [
+      { id: 1, name: 'Classic Wool Blazer', category: 'Outerwear', price: 245, image: '/images/imgMen/Men0.jpg' },
+      { id: 2, name: 'Slim Fit Chinos', category: 'Bottoms', price: 89, is_new: true, image: '/images/imgMen/Men1.jpg' },
+      { id: 3, name: 'Leather Handbag', category: 'Accessories', price: 280, image: '/images/imgWomen/Women3.webp' },
+      { id: 4, name: 'Linen Trousers', category: 'Bottoms', price: 95, image: '/images/imgMen/Men9.jpg' },
+      { id: 5, name: 'Silk Blouse', category: 'Tops', price: 145, image: '/images/imgWomen/Women0.webp' },
+      { id: 6, name: 'Oxford Button-Down', category: 'Shirts', price: 75, image: '/images/imgMen/Men2.jpg' },
+      { id: 7, name: 'Cashmere Cardigan', category: 'Knitwear', price: 195, image: '/images/imgWomen/Women2.webp' },
+      { id: 8, name: 'Merino Wool Sweater', category: 'Knitwear', price: 120, image: '/images/imgMen/Men3.jpg' },
+    ];
+    const totalSlides = Math.ceil(products.length / itemsPerSlide);
+    const startIndex = currentSlide * itemsPerSlide;
+    return products.slice(startIndex, startIndex + itemsPerSlide);
+  };
+
+  const totalSlides = Math.ceil((trendingProducts.length > 0 ? trendingProducts.length : 8) / itemsPerSlide);
+
+  const handlePrevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
+  };
+
+  const handleNextSlide = () => {
+    setCurrentSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -42,17 +71,17 @@ const HomePage = () => {
     {
       name: "Men's Collection",
       subtitle: 'Refined Minimalism',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCqG42G1bSFDCTZ9BlUmuyxeB5Ztwd-CUMNZNcjMJnRLJs8XqDMxwiPir9jIK1iUxFiDW1EN5BqvDllUPQx7AcsIH7rzJs5qH2BbVAX2jUj3rygddF7RBbb1MtFwYmmbgnC6F2M2NRdKqMiXfeEILipchIx2sVwXP_9FAyyEiEhlcg6jnG7A3VT8973proVvS5VTsTR-qOtwFvmHcb-lQ9UySmsO14Fp7yb2F9Yedkse9PVmmV5CWrSzP4FKX1tqjZRJnP7H3s-Cog',
+      image: '/images/imgMen/Men0.jpg',
     },
     {
       name: "Women's Collection",
       subtitle: 'Effortless Sophistication',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAdospNJZbqWyhVEUWCRaE_1k0MTPtqUUQM_m52wTVm6eLsj0vH3JNBjSGSlAneg0KC72AdCReZ9-AkgcAVYvW_-UO58ZjREe7ZQl8hmjpiQUNOTr8SB3GG5WwcXZjszVcrm-m8LpkFiWZrrGAmmIFEpAM3fB_SRmG08fzXHtv_WbjVzVFVbQ0LDAB1fHurW5fCkFFjrzSEvFH0g6s4FY4t5WOOv7IW_u8ZAfN7xRRKt4aLLnyPIaQ98FkN-8MlKVHUTnQfExCoqm0',
+      image: '/images/imgWomen/Women1.webp',
     },
     {
       name: 'Accessories',
       subtitle: 'The Finishing Touch',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC93sXIzTZDYo7n6sTH2aEIB1_5o-15FtXUXHeZPcU-c3T11ZHk6S9znJFBjiLPGDsL-1X0og1qqv_Uz8zTa-nkNUXaLvXKsD0dR6TjdXFdhb64dOiJQep2Xc08rEDeTSlMym2IbzAXlvl4leBZOmns-20TzacqrWLOaJwnfj6BPyjUfCIvHcMlgNXb229IeOEKCb9Uh5IQjxhpd2z3wVjEqU9EuifDRX1kqkdRBw99mtq4i2hwffUSoXQXjglrBgENKGjupFHeX7k',
+      image: '/images/imgMen/Men5.jpg',
     },
   ];
 
@@ -76,7 +105,7 @@ const HomePage = () => {
           <div
             className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
             style={{
-              backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.1)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuAq360IhwZIS3WIiS5As9QuecnzJnYGQ-PSrGf_ZmObcoi75Kf3RPkISVGlVOld3hNOBN6QumtijRTMis32lK7FOmdzwReLR9ybrdCgkkMIk7rwDa9Nj0Riu8Vz_79ejgajrS7XXGEawTZ-y2m8QPVnOlVaJYbH1zUXGVT2Spd1mLFTADivrwq4z8nNahcJyhYLKg1USQfTNn3ZQMmoQUeyHII-tAUkSorcXJeRWfdYgKi7AboiWdAboEtdynaylww9GGkvlxwLYdc')`,
+              backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.1)), url('/images/imgMen/Men7.jpg')`,
             }}
           />
           <div className="absolute inset-0 flex flex-col items-start justify-center p-12 lg:p-24 text-white">
@@ -158,78 +187,43 @@ const HomePage = () => {
             <h2 className="font-serif text-4xl font-semibold">Trending Now</h2>
           </div>
           <div className="flex gap-3">
-            <button className="p-3 border border-slate-200 dark:border-slate-700 rounded-full hover:bg-primary hover:text-white transition-all">
+            <button 
+              onClick={handlePrevSlide}
+              className="p-3 border border-slate-200 dark:border-slate-700 rounded-full hover:bg-primary hover:text-white transition-all disabled:opacity-50"
+            >
               <FaChevronLeft />
             </button>
-            <button className="p-3 border border-slate-200 dark:border-slate-700 rounded-full hover:bg-primary hover:text-white transition-all">
+            <button 
+              onClick={handleNextSlide}
+              className="p-3 border border-slate-200 dark:border-slate-700 rounded-full hover:bg-primary hover:text-white transition-all"
+            >
               <FaChevronRight />
             </button>
           </div>
         </div>
-        <div className="px-6 lg:px-20 overflow-x-auto no-scrollbar flex gap-8 pb-10">
-          {trendingProducts.length > 0 ? (
-            trendingProducts.map((product) => (
+        <div className="px-6 lg:px-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {getVisibleProducts().map((product) => (
               <ProductCard
                 key={product.id}
                 product={product}
                 onAddToCart={handleAddToCart}
               />
-            ))
-          ) : (
-            <>
-              <ProductCard
-                product={{
-                  id: 1,
-                  name: 'Classic Camel Overcoat',
-                  category: 'Outerwear',
-                  price: 245,
-                  image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCgFOMS-PGlfR5Os2pcsD2dOk8xMAw6oBQN8g9fBgSA49ea7AylSoYZqKAOsdohRZuCUIeEHPAv--oWKcl3nUPmaRUkRnXIsT8pjTk78cikzBbZvWPB-Bn7-l9zYbEfmsPfm2u_JsqBfWe-3Wug9sglJMJKsIPD5K7ocEWObTA8-pRTR9dLiPDET_q_AiW1ZoaY5pyrKVDLAegXEuWYimiZIVg_amwEVeRhL9tzrctmhP92qyRlwY_-GF6Ns8aFzQ4bdy_0gQQrpf4',
-                }}
-                onAddToCart={handleAddToCart}
+            ))}
+          </div>
+          <div className="flex justify-center gap-2 mt-10">
+            {Array.from({ length: totalSlides }, (_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentSlide(i)}
+                className={`w-3 h-3 rounded-full transition-all ${
+                  currentSlide === i 
+                    ? 'bg-primary w-8' 
+                    : 'bg-slate-300 dark:bg-slate-600 hover:bg-primary/50'
+                }`}
               />
-              <ProductCard
-                product={{
-                  id: 2,
-                  name: 'Oversized Knit Sweater',
-                  category: 'Knitwear',
-                  price: 120,
-                  is_new: true,
-                  image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBlvW3uqI3S08Tk8fssl_fXSygF-F2cSOATE3kcEndGucEtEXOuIWqJJa9rhLA2touNEAvId4Pvhg59OpXwYzL6yWxlUR45SpT2UUBFpc4krBqs8DLjyw_JlAJ2yxqcEykIl55Uo93YKUNkpeFM4bbolk-_lXP6atgC4RNpm-QgLJUkoS3C7Kld8O9uULGpvGyUl2_R12U6j05cm2_Gliw9TnMlokbhJos2_Y5xLuuUA8nRNgMQHizfbMQtIx1UMy23if0W4qvE3Mk',
-                }}
-                onAddToCart={handleAddToCart}
-              />
-              <ProductCard
-                product={{
-                  id: 3,
-                  name: 'Handcrafted Leather Tote',
-                  category: 'Accessories',
-                  price: 380,
-                  image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBiUcpkK2XXKEHT0jZf1k8fTMcc_LynOpV55NL-Sfu3UisHFabzwiJbnzSi4UjjAAzWthgv2bt-3SnnalZL2tLORPU81sD1UHc2E1Cr7DR-r80vYZc5iRMA2-87bs7lc3wT_zMrJTnlcbnvttj5JTdyw21vMuVmIweud-3YmPc1yZCWab2nlRizYEvm9lrtjy0NqG-NV4s7HogPUyoRkgts8I8LY3y-oQvg9I4KxMXr1NV7M6tpj9sKI4XMZj4XGeNu_vmniMjkn5g',
-                }}
-                onAddToCart={handleAddToCart}
-              />
-              <ProductCard
-                product={{
-                  id: 4,
-                  name: 'Linen Blend Trousers',
-                  category: 'Bottoms',
-                  price: 155,
-                  image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDKnE_p2IyVHPJSCI2jE6uN3zB_LzguLoeubR1r6GtA4lpfBEDkbKFLNuLd8NXdTVTgtg4fr_HxF-zTOPN7pQSOSpNSFS-uN1Za7aLQxOUZMKnLAXmbI8C4KEh7QM52RRF071s6HPwiNf-UkVfJDU6maQSi5Xp3MDDIsUn1NmZt_RIALLiGfMq7efTaVV1XWRHSgiOiHnvanhi4Dmg2Ruh6E-Ec-6Cp23X8VaPQvLY-hExzKMN5LBpvZgpqEnysJpFKUZnYVClSga4',
-                }}
-                onAddToCart={handleAddToCart}
-              />
-              <ProductCard
-                product={{
-                  id: 5,
-                  name: 'Essential White Shirt',
-                  category: 'Shirts',
-                  price: 89,
-                  image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBv1N3XR4CN6s82ro3_aND_urmE-UwXvMNAbHyg8ba3WncSOZXZF0wqyZ4ILIDxYEBZ2uaKEiNJ513oSJpV1tUMoVKmOj_fFsybVZZQz61di5gOInOF_rE9x7V2dVbqC3TfF_p_uv8QwOpYcSnXv8YjTUbBLJN2hZngrSCOIU0n0MrKZt_cbw9LXF99bjjCAlH40mFa-qgH5KF6JvpzIXNei7SoRGsQ5NQjvur6gx2rji5pdTN6FzClAB7nV5wL-5bwRG5tkCgklXc',
-                }}
-                onAddToCart={handleAddToCart}
-              />
-            </>
-          )}
+            ))}
+          </div>
         </div>
       </section>
 

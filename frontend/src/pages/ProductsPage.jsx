@@ -5,8 +5,9 @@ import { Button, ProductCard, Loading, Error } from '../components/ui';
 import { productService } from '../services';
 import { useCart } from '../context/CartContext';
 
-const ProductsPage = () => {
-  const { category } = useParams();
+const ProductsPage = ({ category: categoryProp }) => {
+  const { category: categoryParam } = useParams();
+  const category = categoryParam || categoryProp;
   const [searchParams, setSearchParams] = useSearchParams();
   
   const [products, setProducts] = useState([]);
@@ -58,9 +59,9 @@ const ProductsPage = () => {
         setProducts(response.data || response);
         if (response.meta) {
           setPagination({
-            current_page: response.meta.current_page,
-            last_page: response.meta.last_page,
-            total: response.meta.total,
+            current_page: response.meta.current_page || 1,
+            last_page: response.meta.last_page || 1,
+            total: response.meta.total || 0,
           });
         }
       } catch (err) {

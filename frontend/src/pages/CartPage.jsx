@@ -60,7 +60,7 @@ const CartPage = () => {
               >
                 <Link to={`/product/${item.product_id}`} className="w-full sm:w-32 h-40 bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden flex-shrink-0">
                   <img
-                    src={item.image || item.product?.image}
+                    src={item.image || item.product?.image || '/images/imgMen/Men0.jpg'}
                     alt={item.name || item.product?.name}
                     className="w-full h-full object-cover"
                   />
@@ -71,17 +71,17 @@ const CartPage = () => {
                     <div>
                       <Link to={`/product/${item.product_id}`}>
                         <h3 className="text-lg font-bold leading-tight hover:text-primary transition-colors">
-                          {item.name || item.product?.name}
+                          {item.name || item.product?.name || 'Product'}
                         </h3>
                       </Link>
                       {item.color && (
-                        <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Color: {item.color}</p>
+                        <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Color: {typeof item.color === 'object' ? item.color.name : item.color}</p>
                       )}
                       {item.size && (
                         <p className="text-slate-500 dark:text-slate-400 text-sm">Size: {item.size}</p>
                       )}
                     </div>
-                    <p className="text-xl font-bold text-primary">${(item.price * item.quantity).toFixed(2)}</p>
+                    <p className="text-xl font-bold text-primary">${((item.price || item.product?.price || 0) * item.quantity).toFixed(2)}</p>
                   </div>
 
                   <div className="flex items-center justify-between mt-6">
