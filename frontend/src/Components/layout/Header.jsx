@@ -3,11 +3,13 @@ import { Link, NavLink } from 'react-router-dom';
 import { FaSearch, FaShoppingBag, FaUser, FaHeart } from 'react-icons/fa';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
+import { useWishlist } from '../../context/WishlistContext';
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const { itemCount } = useCart();
   const { user, isAuthenticated, logout } = useAuth();
+  const { itemCount: wishlistCount } = useWishlist();
 
   const navLinks = [
     { to: '/shop', label: 'Shop' },
@@ -67,9 +69,14 @@ const Header = () => {
           </form>
 
           <div className="flex items-center gap-2">
-            <button className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full relative">
+            <Link to="/favorites" className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full relative">
               <FaHeart className="text-slate-700 dark:text-slate-300" />
-            </button>
+              {wishlistCount > 0 && (
+                <span className="absolute top-1 right-1 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
             
             <Link to="/cart" className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full relative">
               <FaShoppingBag className="text-slate-700 dark:text-slate-300" />

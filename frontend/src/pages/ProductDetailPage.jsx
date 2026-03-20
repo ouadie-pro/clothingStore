@@ -4,10 +4,12 @@ import { FaStar, FaShoppingCart, FaHeart, FaChevronLeft, FaChevronRight, FaStarH
 import { Button, Loading, Error } from '../components/ui';
 import { productService } from '../services';
 import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
   const { addItem } = useCart();
+  const { toggleItem, isInWishlist } = useWishlist();
   
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -29,18 +31,27 @@ const ProductDetailPage = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
+      setLoading(true);
+      setError(null);
+      setSelectedImage(0);
+      setSelectedSize(null);
+      setSelectedColor(null);
+      setQuantity(1);
+      
       try {
         const response = await productService.getProduct(id);
-        setProduct(response.data || response);
-        if (response.images?.length > 0) {
-          setSelectedColor(response.colors?.[0] || null);
+        const productData = response.data || response;
+        setProduct(productData);
+        if (productData.colors?.length > 0) {
+          setSelectedColor(productData.colors[0]);
         }
       } catch (err) {
-        setError(err.message);
+        setError(err.message || 'Failed to load product');
       } finally {
         setLoading(false);
       }
     };
+    
     fetchProduct();
   }, [id]);
 
@@ -52,12 +63,16 @@ const ProductDetailPage = () => {
     
     setAddingToCart(true);
     try {
-      await addItem(product.id, quantity, selectedSize, selectedColor);
+      await addItem(product.id, quantity, selectedSize, selectedColor?.value || selectedColor);
     } catch (err) {
       console.error('Failed to add to cart:', err);
     } finally {
       setAddingToCart(false);
     }
+  };
+
+  const handleToggleWishlist = () => {
+    toggleItem(product.id);
   };
 
   const renderStars = (rating) => {
@@ -89,6 +104,8 @@ const ProductDetailPage = () => {
   const productImages = product.images || [
     'https://lh3.googleusercontent.com/aida-public/AB6AXuCsGYdSTWVh-_ZjaldWwfrzqJM6NlPpZarxd3c-zhm5SIp_7Gd4tdvn4jybimGnC0ErfBqOHxaOF52q9aQOMNk416sSAz8q8yPKuvAGXewwJenccRzp1QblYIY0aAsr4r18Q1GVhCUX2nGrkYbavpGCzx2y-t8OW46ZkMxz22fFOENbDcI7417MS6K0_oTk-To7ad3aQlPxwtXdyLCAzxSCDzMneOgWJzDzxNmpaKF-SUy_q1UFooLUqpy7BfrY0nNR1TErwIv6PlA',
   ];
+
+  const isFavorite = isInWishlist(product.id);
 
   return (
     <div className="flex-1 max-w-[1280px] mx-auto w-full px-10 py-8">
@@ -153,8 +170,8 @@ const ProductDetailPage = () => {
             {/* Color Selector */}
             <div className="flex flex-col gap-3">
               <div className="flex justify-between items-center">
-                <p className="text-slate-late-100 font-bold">
-900 dark:text-s                  Color: <span className="font-normal text-slate-500">{selectedColor?.name || 'Select color'}</span>
+                <p className="text-slate-900 dark:text-slate-100 font-bold">
+                  Color: <span className="font-normal text-slate-500">{selectedColor?.name || 'Select color'}</span>
                 </p>
               </div>
               <div className="flex gap-3">
@@ -228,7 +245,14 @@ const ProductDetailPage = () => {
                 <FaShoppingCart />
                 Add to Cart
               </Button>
-              <Button className="w-14 h-14 border-2 border-slate-200 dark:border-slate-700 rounded-xl flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-red-500 hover:border-red-200 transition-all">
+              <Button 
+                onClick={handleToggleWishlist}
+                className={`w-14 h-14 border-2 rounded-xl flex items-center justify-center transition-all ${
+                  isFavorite 
+                    ? 'border-red-500 text-red-500 bg-red-50' 
+                    : 'border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-red-500 hover:border-red-200'
+                }`}
+              >
                 <FaHeart />
               </Button>
             </div>

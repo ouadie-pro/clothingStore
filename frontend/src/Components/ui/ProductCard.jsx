@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 
-const ProductCard = ({ product, onAddToCart, onToggleWishlist }) => {
+const ProductCard = ({ product, onAddToCart, onToggleWishlist, isInWishlist = false }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -50,7 +50,9 @@ const ProductCard = ({ product, onAddToCart, onToggleWishlist }) => {
 
         <button
           onClick={handleWishlist}
-          className="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur rounded-full text-slate-400 hover:text-red-500 transition-all opacity-0 group-hover:opacity-100"
+          className={`absolute top-4 right-4 p-2 bg-white/80 backdrop-blur rounded-full transition-all opacity-0 group-hover:opacity-100 ${
+            isInWishlist ? 'text-red-500 opacity-100' : 'text-slate-400 hover:text-red-500'
+          }`}
         >
           <FaHeart className="text-xl" />
         </button>

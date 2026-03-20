@@ -4,6 +4,7 @@ import { FaChevronRight, FaFilter } from 'react-icons/fa';
 import { Button, ProductCard, Loading, Error } from '../components/ui';
 import { productService } from '../services';
 import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
 
 const ProductsPage = ({ category: categoryProp }) => {
   const { category: categoryParam } = useParams();
@@ -24,6 +25,7 @@ const ProductsPage = ({ category: categoryProp }) => {
   
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const { addItem } = useCart();
+  const { toggleItem, isInWishlist } = useWishlist();
 
   const sizes = ['XS', 'S', 'M', 'L', 'XL'];
   const colors = [
@@ -245,6 +247,8 @@ const ProductsPage = ({ category: categoryProp }) => {
                       key={product.id}
                       product={product}
                       onAddToCart={handleAddToCart}
+                      onToggleWishlist={toggleItem}
+                      isInWishlist={isInWishlist(product.id)}
                     />
                   ))
                 ) : (

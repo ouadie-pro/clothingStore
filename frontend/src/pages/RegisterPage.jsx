@@ -73,7 +73,7 @@ const RegisterPage = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="John Doe"
+              placeholder="Enter your name"
               required
             />
             <Input
