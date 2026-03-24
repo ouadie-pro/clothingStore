@@ -11,33 +11,37 @@ class ProductController extends Controller
     {
         $query = Product::query();
 
-        if ($request->has('category')) {
+        if ($request->filled('category')) {
             $query->where('gender', $request->category);
         }
 
-        if ($request->has('q')) {
+        if ($request->filled('q')) {
             $query->where('name', 'like', '%' . $request->q . '%');
         }
 
-        if ($request->has('sizes')) {
-            $sizes = explode(',', $request->sizes);
-            $query->whereIn('size', $sizes);
+        if ($request->filled('sizes')) {
+            $sizes = array_filter(explode(',', $request->sizes));
+            if (!empty($sizes)) {
+                $query->whereIn('size', $sizes);
+            }
         }
 
-        if ($request->has('colors')) {
-            $colors = explode(',', $request->colors);
-            $query->whereIn('color', $colors);
+        if ($request->filled('colors')) {
+            $colors = array_filter(explode(',', $request->colors));
+            if (!empty($colors)) {
+                $query->whereIn('color', $colors);
+            }
         }
 
-        if ($request->has('price_min')) {
-            $query->where('price', '>=', $request->price_min);
+        if ($request->filled('price_min') && is_numeric($request->price_min)) {
+            $query->where('price', '>=', (float) $request->price_min);
         }
 
-        if ($request->has('price_max')) {
-            $query->where('price', '<=', $request->price_max);
+        if ($request->filled('price_max') && is_numeric($request->price_max)) {
+            $query->where('price', '<=', (float) $request->price_max);
         }
 
-        if ($request->has('sort')) {
+        if ($request->filled('sort')) {
             switch ($request->sort) {
                 case 'price_low':
                     $query->orderBy('price', 'asc');

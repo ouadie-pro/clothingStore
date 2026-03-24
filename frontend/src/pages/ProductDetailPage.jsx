@@ -101,9 +101,14 @@ const ProductDetailPage = () => {
     return <Error message={error || 'Product not found'} onRetry={() => window.location.reload()} />;
   }
 
-  const productImages = product.images || [
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuCsGYdSTWVh-_ZjaldWwfrzqJM6NlPpZarxd3c-zhm5SIp_7Gd4tdvn4jybimGnC0ErfBqOHxaOF52q9aQOMNk416sSAz8q8yPKuvAGXewwJenccRzp1QblYIY0aAsr4r18Q1GVhCUX2nGrkYbavpGCzx2y-t8OW46ZkMxz22fFOENbDcI7417MS6K0_oTk-To7ad3aQlPxwtXdyLCAzxSCDzMneOgWJzDzxNmpaKF-SUy_q1UFooLUqpy7BfrY0nNR1TErwIv6PlA',
-  ];
+  const productImages =
+  product.images && product.images.length > 0
+    ? product.images
+    : product.image
+    ? [product.image]
+    : [
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuCsGYdSTWVh-_ZjaldWwfrzqJM6NlPpZarxd3c-zhm5SIp_7Gd4tdvn4jybimGnC0ErfBqOHxaOF52q9aQOMNk416sSAz8q8yPKuvAGXewwJenccRzp1QblYIY0aAsr4r18Q1GVhCUX2nGrkYbavpGCzx2y-t8OW46ZkMxz22fFOENbDcI7417MS6K0_oTk-To7ad3aQlPxwtXdyLCAzxSCDzMneOgWJzDzxNmpaKF-SUy_q1UFooLUqpy7BfrY0nNR1TErwIv6PlA',
+      ];
 
   const isFavorite = isInWishlist(product.id);
 

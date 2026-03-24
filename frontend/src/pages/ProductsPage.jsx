@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { FaChevronRight, FaFilter } from 'react-icons/fa';
 import { Button, ProductCard, Loading, Error } from '../components/ui';
@@ -42,39 +42,54 @@ const ProductsPage = ({ category: categoryProp }) => {
     { label: '$300+', value: '300+' },
   ];
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      setLoading(true);
-      try {
-        const params = {
-          page: pagination.current_page,
-          category: category || undefined,
-          sizes: filters.sizes.join(','),
-          colors: filters.colors.join(','),
-          price_min: filters.priceRange ? filters.priceRange.split('-')[0] : undefined,
-          price_max: filters.priceRange ? filters.priceRange.split('-')[1] : undefined,
-          sort: filters.sort,
-          q: searchParams.get('q'),
-        };
-        
-        const response = await productService.getProducts(params);
-        setProducts(response.data || response);
-        if (response.meta) {
-          setPagination({
-            current_page: response.meta.current_page || 1,
-            last_page: response.meta.last_page || 1,
-            total: response.meta.total || 0,
-          });
-        }
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const parsePriceRange = (range) => {
+    if (!range) return { price_min: undefined, price_max: undefined };
     
-    fetchProducts();
+    const parts = range.split('-');
+    const price_min = parts[0] ? parseInt(parts[0], 10) : undefined;
+    const price_max = (parts.length > 1 && parts[1] && parts[1] !== '+') 
+      ? parseInt(parts[1], 10) 
+      : undefined;
+    
+    return { price_min, price_max };
+  };
+
+  const fetchProducts = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const { price_min, price_max } = parsePriceRange(filters.priceRange);
+      
+      const params = {
+        page: pagination.current_page,
+        category: category || undefined,
+        sizes: filters.sizes.join(',') || undefined,
+        colors: filters.colors.join(',') || undefined,
+        ...(price_min !== undefined && { price_min }),
+        ...(price_max !== undefined && { price_max }),
+        sort: filters.sort,
+        q: searchParams.get('q') || undefined,
+      };
+      
+      const response = await productService.getProducts(params);
+      setProducts(response.data || response);
+      if (response.meta) {
+        setPagination({
+          current_page: response.meta.current_page || 1,
+          last_page: response.meta.last_page || 1,
+          total: response.meta.total || 0,
+        });
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   }, [category, filters, pagination.current_page, searchParams]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
   const handleFilterChange = (type, value) => {
     setFilters((prev) => {

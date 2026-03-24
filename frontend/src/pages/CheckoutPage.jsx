@@ -21,7 +21,6 @@ const CheckoutPage = () => {
   });
   
   const [shippingMethod, setShippingMethod] = useState('standard');
-  const [paymentMethod, setPaymentMethod] = useState('card');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -37,7 +36,6 @@ const CheckoutPage = () => {
       await orderService.createOrder({
         ...formData,
         shipping_method: shippingMethod,
-        payment_method: paymentMethod,
         items: items.map((item) => ({
           product_id: item.product_id,
           quantity: item.quantity,
@@ -66,7 +64,7 @@ const CheckoutPage = () => {
         <div className="flex items-center gap-2 mb-2 text-sm">
           <Link to="/cart" className="text-slate-400 hover:text-primary">Cart</Link>
           <span className="text-slate-300">›</span>
-          <span className="text-slate-900 dark:text-slate-100 font-bold">Payment</span>
+          <span className="text-slate-900 dark:text-slate-100 font-bold">Checkout</span>
         </div>
 
         <h1 className="text-3xl font-extrabold text-slate-900 dark:text-slate-100 mb-8">Checkout</h1>
@@ -205,74 +203,7 @@ const CheckoutPage = () => {
                 </div>
               </section>
 
-              {/* Payment */}
-              <section>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="bg-primary/10 text-primary w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">3</div>
-                  <h2 className="text-lg font-bold">Payment Details</h2>
-                </div>
 
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                  <button
-                    type="button"
-                    onClick={() => setPaymentMethod('apple')}
-                    className={`flex items-center justify-center gap-2 py-2 px-4 border rounded-lg transition-all ${
-                      paymentMethod === 'apple'
-                        ? 'border-primary bg-primary/5'
-                        : 'border-slate-200 dark:border-slate-700 hover:bg-slate-50'
-                    }`}
-                  >
-                    <span className="material-symbols-outlined text-slate-900 dark:text-white">account_balance_wallet</span>
-                    <span className="text-xs font-bold uppercase tracking-wider">Apple Pay</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setPaymentMethod('paypal')}
-                    className={`flex items-center justify-center gap-2 py-2 px-4 border rounded-lg transition-all ${
-                      paymentMethod === 'paypal'
-                        ? 'border-primary bg-primary/5'
-                        : 'border-slate-200 dark:border-slate-700 hover:bg-slate-50'
-                    }`}
-                  >
-                    <span className="material-symbols-outlined text-primary">payments</span>
-                    <span className="text-xs font-bold uppercase tracking-wider">PayPal</span>
-                  </button>
-                </div>
-
-                <div className="relative flex py-4 items-center">
-                  <div className="flex-grow border-t border-slate-200 dark:border-slate-800"></div>
-                  <span className="flex-shrink mx-4 text-slate-400 text-xs font-medium uppercase">Or Pay with Card</span>
-                  <div className="flex-grow border-t border-slate-200 dark:border-slate-800"></div>
-                </div>
-
-                <form className="space-y-4">
-                  <Input
-                    label="Card Number"
-                    placeholder="0000 0000 0000 0000"
-                    className="!pr-12"
-                  />
-                  <div className="grid grid-cols-2 gap-4">
-                    <Input
-                      label="Expiry Date"
-                      placeholder="MM / YY"
-                    />
-                    <Input
-                      label="CVC"
-                      placeholder="123"
-                    />
-                  </div>
-                  <div className="flex items-center gap-2 pt-2">
-                    <input
-                      type="checkbox"
-                      id="save-card"
-                      className="rounded border-slate-300 text-primary focus:ring-primary"
-                    />
-                    <label htmlFor="save-card" className="text-xs text-slate-500 font-medium">
-                      Save card for future purchases
-                    </label>
-                  </div>
-                </form>
-              </section>
             </div>
 
             {/* Right Side - Order Summary */}
@@ -332,7 +263,7 @@ const CheckoutPage = () => {
                 className="w-full py-4 px-6 rounded-xl flex items-center justify-center gap-2 shadow-lg"
               >
                 <FaLock />
-                Complete Payment
+                Place Order
               </Button>
 
               <p className="text-[10px] text-center text-slate-400 leading-relaxed">
