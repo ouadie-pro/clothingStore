@@ -315,7 +315,7 @@ const CheckoutPage = () => {
                   </div>
                   <div className="flex justify-between font-extrabold text-lg pt-2 text-slate-900 dark:text-slate-100">
                     <span>Total</span>
-                    <span>${(orderTotal + shippingCost).toFixed(2)}</span>
+                    <span>${orderTotal.toFixed(2)}</span>
                   </div>
                 </div>
               </div>

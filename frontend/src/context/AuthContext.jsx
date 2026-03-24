@@ -28,6 +28,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const data = await authService.login(email, password);
       setUser(data.user);
+      window.dispatchEvent(new CustomEvent('auth:login', { detail: data.user }));
       return data;
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
@@ -40,6 +41,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const data = await authService.register(userData);
       setUser(data.user);
+      window.dispatchEvent(new CustomEvent('auth:login', { detail: data.user }));
       return data;
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed');
@@ -52,6 +54,7 @@ export const AuthProvider = ({ children }) => {
       await authService.logout();
     } finally {
       setUser(null);
+      window.dispatchEvent(new CustomEvent('auth:logout'));
     }
   };
 

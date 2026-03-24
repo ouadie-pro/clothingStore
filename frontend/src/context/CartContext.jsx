@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { cartService } from '../services';
+import { cartService, authService } from '../services';
 
 const CartContext = createContext(null);
 
@@ -20,8 +20,33 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const clearLocalCart = () => {
+    localStorage.removeItem('mock_cart');
+    setItems([]);
+  };
+
   useEffect(() => {
     fetchCart();
+  }, []);
+
+  useEffect(() => {
+    const handleAuthLogin = async () => {
+      if (authService.isAuthenticated()) {
+        await fetchCart();
+      }
+    };
+
+    const handleAuthLogout = () => {
+      clearLocalCart();
+    };
+
+    window.addEventListener('auth:login', handleAuthLogin);
+    window.addEventListener('auth:logout', handleAuthLogout);
+
+    return () => {
+      window.removeEventListener('auth:login', handleAuthLogin);
+      window.removeEventListener('auth:logout', handleAuthLogout);
+    };
   }, []);
 
   const addItem = async (productId, quantity = 1, size = null, color = null) => {

@@ -401,11 +401,21 @@ export const cartService = {
     } catch (error) {
       const stored = localStorage.getItem('mock_cart');
       let cart = stored ? JSON.parse(stored) : { items: [] };
+      const product = MOCK_PRODUCTS.find(p => p.id === parseInt(productId));
       const existing = cart.items.find(i => i.product_id === productId);
       if (existing) {
         existing.quantity += quantity;
       } else {
-        cart.items.push({ id: Date.now(), product_id: productId, quantity, size, color, price: 100 });
+        cart.items.push({
+          id: Date.now(),
+          product_id: productId,
+          name: product?.name || 'Unknown Product',
+          image: product?.image || null,
+          quantity,
+          size,
+          color,
+          price: product?.price || 100,
+        });
       }
       localStorage.setItem('mock_cart', JSON.stringify(cart));
       return cart;

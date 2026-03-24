@@ -35,7 +35,7 @@ class Product extends Model
         'is_new' => 'boolean',
         'is_sale' => 'boolean',
         'stock' => 'integer',
-        'rating' => 'integer',
+        'rating' => 'float',
         'reviews' => 'integer',
     ];
 }
